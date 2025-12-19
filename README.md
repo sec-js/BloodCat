@@ -2,7 +2,22 @@
 
 # Blood-Cat
 
-A tool for collecting publicly exposed network cameras, with support for specifying country and region.
+A tool for hacking into publicly exposed network cameras, with support for specifying country and region
+
+```
+Version 1.3
+[+] Added a log output interface for a more elegant output display. 
+[+] Added the --ips parameter to support importing multiple IP lists; in domain penetration, BloodCat can help you compromise more cameras.
+```
+
+![alt text](./pic/TEST-2.png)
+
+![alt text](./pic/TEST-1.png)
+
+
+
+![alt text](./pic/TEST-3.png)
+
 
 ---
 
@@ -24,6 +39,14 @@ $ python3 bloodcat.py -h
 ![alt text](./pic/image.png)
 
 ---
+
+## Bruteforce for  IP list
+
+```bash
+$ python3 bloodcat.py --ips target.txt
+```
+
+![alt text](./pic/TEST-1.png)
 
 ## Bruteforce a specific camera IP
 

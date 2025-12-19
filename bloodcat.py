@@ -12,8 +12,11 @@ import base64
 import argparse
 from lib.camlib import * 
 from lib.fofaget import * 
+from lib.log_cat import * 
+log = LogCat()
 
-LOGO = r'''
+LOGO = "\033[31m"+r'''
+
                   ;,_            ,
                  _uP~"b          d"u,
                 dP'   "b       ,d"  "o
@@ -40,10 +43,36 @@ qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
                                         `~"\ic,qggddOOP"|  |  ~\   `\~-._
                                           ,qP`"""|"   | `\ `;   `\   `\
                                _        _,p"     |    |   `\`;    |    |
-      Blood Cat                "boo,._dP"       `\_  `\    `\|   `\   ;
+                                "boo,._dP"       `\_  `\    `\|   `\   ;
                                  `"7tY~'            `\  `\    `|_   |
-                                                      `~\  |
-Maptnh@S-H4CK13                 https://github.com/MartinxMax'''
+                                                      `~\  |'''+'\033[0m'+'\033[102m'+'''
+[Maptnh@S-H4CK13]      [Blood Cat V1.3]    [https://github.com/MartinxMax]'''+'\033[0m'
+
+    
+def read_ips(filename: str):
+    ips = []
+    try:
+        with open(filename, 'r', encoding='utf-8') as f:
+            for line_num, line in enumerate(f, 1):
+                ip_port = line.strip()
+                if not ip_port:
+                    continue
+                if ':' in ip_port:
+                    ip_part, port_part = ip_port.split(':', 1)
+                    if not port_part.isdigit():
+                        log.error(f"Line {line_num} format error (port is not a number): {ip_port}, skipped")
+                        continue
+                ips.append(ip_port)
+        if not ips:
+            log.error(f"No valid IP/IP:PORT found in file {filename}")
+        return ips
+    
+    except FileNotFoundError:
+        log.error(f"File {filename} does not exist!")
+        sys.exit(1)
+    except Exception as e:
+        log.error(f"Failed to read file {filename}: {str(e)}")
+        sys.exit(1)
 
 def main():
     print(LOGO)
@@ -53,9 +82,25 @@ def main():
     parser.add_argument('--region', default='', type=str, help='Area')
     parser.add_argument('--key',  default='', type=str, help='Fofa API key')
     parser.add_argument('--ip', default='', type=str, help='IP:PORT')
+    parser.add_argument('--ips', default='', type=str, help='Targets list file (each line: IP or IP:PORT)')
     args = parser.parse_args()
     cam = Execute_Cam()
-    if not args.ip:
+    # Ips Module
+    if args.ips:
+      log.info(f"Loaded ips file: [{args.ips}]")
+      ips_list = read_ips(args.ips)
+      if ips_list:  
+        for ip_ in ips_list:
+          try:
+              ip = ip_.split(':')[0]
+              port = int(ip_.split(':')[-1]) if ':' in ip_ else 554
+              cam.run(ip, port)
+          except Exception as e:
+              log.error(f"[!] Skip... {ip_port} ip")
+      else:
+        sys.exit(0)
+    # Fofa Module
+    elif args.key:
         fofa = Fofa()
         info = fofa.query(
             key=args.key,
@@ -64,14 +109,14 @@ def main():
             region=args.region
         )
         if info:
-            print("[+] Starting information retrieval")
             for i in info:
                 ip = i.split(':')[0]
                 port = int(i.split(':')[-1])
                 cam.run(ip,port)
-    else:
+    elif args.ip:
         cam.run(args.ip.split(':')[0],int(args.ip.split(':')[-1]))
-
+    else:
+        parser.print_help()
 
 if __name__ == '__main__':
     main() 
