@@ -119,9 +119,11 @@ def main():
     elif args.ip:
         if not (':' in args.ip):
             log.error("Invalid format")
+            sys.exit(0)
         cam.run(args.ip.split(':')[0],int(args.ip.split(':')[-1]),args.password)
     else:
         parser.print_help()
 
 if __name__ == '__main__':
     main() 
+
