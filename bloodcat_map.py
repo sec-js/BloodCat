@@ -254,7 +254,7 @@ class Bridge(QObject):
                 [ffplay_bin, '-rtsp_transport', 'tcp', '-x', '420', '-y', '340', url, '-window_title', ip],
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=False
             )
-            print(f"[+] Playing: {url}")
+            print(f"[+] Playing...")
         except FileNotFoundError:
             print("\033[31m[!] ffplay not found, please install ffmpeg \033[0m")
         except Exception as e:
@@ -268,10 +268,6 @@ class DataLoader(QThread):
         super().__init__(parent)
 
     def parse_raw_to_dict(self, raw, source_label):
-        """
-        Parse raw (str/list/dict) into dict[ip] = {rtsp, lalo, sys_org, asn, network, source, icon}
-        This preserves original multi-format support.
-        """
         result = {}
         if not raw:
             return result
@@ -491,13 +487,6 @@ class MapWindow(QMainWindow):
             print("\033[31m[!] runJavaScript failed:", e, "\033[0m")
 
     def _handle_remote_loaded(self, remote_dict):
-        """
-        Called when remote data is parsed (could be empty dict).
-        Rules:
-         - Always update map with remote data first.
-         - If remote_dict non-empty => play one-breath hide animation immediately.
-         - If remote_dict empty => keep looping (do not hide) and wait for local.
-        """
         log.info("Remote loaded: %d items" % len(remote_dict))
         self.remote_data = remote_dict or {}
         self.merged_data = dict(self.remote_data) 
@@ -506,20 +495,8 @@ class MapWindow(QMainWindow):
       
 
     def _handle_local_loaded(self, local_dict):
-        """
-        Called when local data parsed.
-        Merge rules:
-         - iterate local items:
-             if ip NOT in remote: add local item as-is (icon main2.png)
-             if ip IN remote: local overrides fields BUT keep remote's 'lalo' and remote's 'icon'
-               (i.e., display uses remote coordinate & remote icon; other fields from local)
-         - finally call updateMarkers with merged_data
-         - if remote was empty (so we were looping), stop looping and play one-breath hide now.
-        """
         log.info("Local loaded: %d items" % len(local_dict))
         self.local_data = local_dict or {}
-
-
         merged = dict(self.remote_data) 
         for ip, local_item in (self.local_data.items() if self.local_data else {}):
             if ip in merged:
@@ -537,9 +514,7 @@ class MapWindow(QMainWindow):
                 }
             else:
                 merged[ip] = local_item
-
         self.merged_data = merged
-
         self._run_update_js(self.merged_data)
 
  
