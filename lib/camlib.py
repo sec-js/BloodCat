@@ -375,10 +375,12 @@ class CamLib():
         return data
 
  
-    def get_DB_data(self):
+    def get_DB_data(self,url:str):
         data = []
+        if not url:
+            url = self.DB
         try:
-            enc = requests.get(self.DB,verify=False,timeout=5).content
+            enc = requests.get(url,verify=False,timeout=5).content
             for l in enc.split(b'\uE000'):
                 if not l:   
                         continue

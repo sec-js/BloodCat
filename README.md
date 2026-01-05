@@ -2,59 +2,23 @@
 
 # Blood-Cat
 
-A tool for hacking into publicly exposed network cameras, with support for specifying country and region
+A tool for hacking into publicly exposed network cameras, with support for specifying country and region.
 
 ```
 Version 2.3
-[+] Encrypt BloodCat data files
-[+] Fix brute-force attack error
-[+] Fix duplicate data addition prevention issue
-[+] Add purple markers for local data and red markers for BloodCat official data in BloodCat-Map
+[+] BloodCat-Map: Multi-color icons to display data from different APIs respectively
+[+] BloodCat-Map: Team-shared data API – you can share your data with other members via this feature
+[+] BloodCat-Map: Pointer snapping – the mouse pointer will automatically snap when approaching a target
+[+] BloodCat-Map: Team LAN chat – I adopted UDP broadcast encrypted communication, which undoubtedly reduces a lot of configuration work...
 ```
 
-
-```
-Version 2.2
-[+] Modified storage structure
-[+] Remote retrieval of encrypted data from GitHub to ensure user anonymity and security
-[+] Added BloodCat Map
-[+] Added search functionality in BloodCat Map
-[+] Users can click coordinates on the BloodCat Map to view live camera streams in real time
-[+] Added honeypot host cleanup mechanism in BloodCat, enabling precise target identification
-```
+![alt text](./pic/v23.png)
 
 ![alt text](./pic/map-image-1.png)
 
 ![alt text](./pic/map-image.png)
-
-```
-Version 2.0
-[-] Remove tqdm library
-[-] Remove multi-threaded mode, switch to single-threaded... to prevent Bloodcat's IP from being blocked by cameras
-[+] New verification detection logic to reduce exposure risk and achieve precise targeting
-[+] New fingerprinting with automatic CVE detection
-[+] Perform geographical information analysis on incoming IPs
-```
-![alt text](./pic/v2.png)
-
-
-```
-Version 1.5
-[+] Fully automatic calculation of the optimal thread count, ensuring maximum efficiency without impacting system performance
-[+] Expanded password list
-[+] Added --password option for password spraying
-[+] Update National Camera Data for AE AU BR CA CN DE FR GB IL IN JP RU SA SG US
-```
-
-
-```
-Version 1.3
-[+] Added a log output interface for a more elegant output display. 
-[+] Added the --ips parameter to support importing multiple IP lists; in domain penetration, BloodCat can help you compromise more cameras.
-```
-
  
-
+![alt text](./pic/v2.png)
 
 ![alt text](./pic/TEST-3.png)
 
