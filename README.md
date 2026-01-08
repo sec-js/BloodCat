@@ -2,7 +2,7 @@
 
 # Blood-Cat
 
-A tool for hacking into publicly exposed network cameras, with support for specifying country and region.
+A tool for hacking into publicly exposed network cameras, with support for targeting specific countries and regions, and visualizing the collected camera data on an interactive map. It also supports team collaboration for coordinated operations.
 
 ![alt text](./pic/main.png)
 
@@ -158,5 +158,6 @@ TEAM A:
 ![alt text](./pic/image-8.png)
 TEAM B:
 ![alt text](./pic/image-9.png)
+
 
 ---
