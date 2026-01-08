@@ -43,7 +43,9 @@ If you are using the Windows operating system, please download `https://github.c
 
 ![alt text](./pic/image-1.png)
 
-`(bloodcat)$ python3 bloodcat_map.py`
+```bash
+(bloodcat)$ python3 bloodcat_map.py
+```
 
 ![alt text](./pic/image-3.png)
 
@@ -57,7 +59,10 @@ If you are using the Windows operating system, please download `https://github.c
 
 ![alt text](./pic/image-4.png)
 
-`(bloodcat)$ python3 bloodcat_map.py`
+```bash
+(bloodcat)$ python3 bloodcat_map.py
+```
+
 
 ![alt text](./pic/image-5.png)
 
@@ -78,7 +83,10 @@ Place all `.bc` files that need to be merged into the `./data/` directory.
 
 ![alt text](./pic/image-12.png)
 
-`(bloodcat)$ python3 bloodcat.py --merge`
+```bash
+(bloodcat)$ python3 bloodcat.py --merge
+```
+
 
 ![alt text](./pic/image-13.png)
 
@@ -99,7 +107,7 @@ Replace the original global.bc file, then right-click Reload in BloodCat_Map:
 
 
 ```bash
-$ python3 bloodcat_map.py
+(bloodcat)$ python3 bloodcat_map.py
 ```
 
  
