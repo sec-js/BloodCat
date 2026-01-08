@@ -2,7 +2,7 @@
 
 # Blood-Cat
 
-A tool for hacking into publicly exposed network cameras, with support for targeting specific countries and regions, and visualizing the collected camera data on an interactive map. It also supports team collaboration for coordinated operations.
+A tool for hacking into publicly exposed network cameras, with support for specifying country and region.
 
 ![alt text](./pic/main.png)
 
@@ -103,6 +103,23 @@ Replace the original global.bc file, then right-click Reload in BloodCat_Map:
 
 ---
 
+## Hikvision Crack
+
+```bash
+(bloodcat)$ python3 CVE-2017-7921_HIK_Auto_Crack.py --ips ./target.txt
+```
+
+![alt text](./pic/hik.png)
+
+
+```bash
+(bloodcat)$ python3 bloodcat.py --hiv ./data/hik.json
+```
+
+![alt text](./pic/hik2.png)
+
+---
+
 # Blood-Cat-Map Usage
 
 
@@ -112,6 +129,8 @@ Replace the original global.bc file, then right-click Reload in BloodCat_Map:
 
  
 ![alt text](./pic/image-2.png)
+
+
 
 ## Remote API Data
 
@@ -158,6 +177,5 @@ TEAM A:
 ![alt text](./pic/image-8.png)
 TEAM B:
 ![alt text](./pic/image-9.png)
-
 
 ---

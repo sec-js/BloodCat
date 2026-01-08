@@ -10,11 +10,13 @@
 import socket
 import base64
 import argparse
+import json
 from lib.camlib import * 
 from lib.fofaget import * 
 from lib.log_cat import * 
 
 log = LogCat()
+cam = CamLib()
 
 LOGO = "\033[31m"+r'''
 
@@ -47,7 +49,7 @@ qp         t\io,_           `~"TOOggQV""""        _,dg,_ =PIQHib.
                                 "boo,._dP"       `\_  `\    `\|   `\   ;
                                  `"7tY~'            `\  `\    `|_   |
                                                       `~\  |'''+'\033[0m'+'\033[35m'+'''
-[Maptnh@S-H4CK13]      [Blood Cat V2.3.2]    [https://github.com/MartinxMax]'''+'\033[0m'
+[Maptnh@S-H4CK13]      [Blood Cat V2.3.3]    [https://github.com/MartinxMax]'''+'\033[0m'
 
     
 def read_ips(filename: str):
@@ -75,6 +77,32 @@ def read_ips(filename: str):
         log.error(f"Failed to read file {filename}: {str(e)}")
         sys.exit(1)
 
+
+
+
+def read_and_exe_hik_credentials(file_path):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            cred_list = json.load(f)
+        
+        if not isinstance(cred_list, list):
+            log.error(f"{file_path} Format error: Root node is not a list!")
+            return
+
+        log.info(f"Preparing to test Hikvision camera information in {file_path} (total {len(cred_list)} entries)")
+        
+        for index, device in enumerate(cred_list, 1):
+            ip = device.get('IP')
+            rtsp_port = device.get('RTSP_PORT')
+            password = device.get('PASSWORD')
+            cam.hiv(ip, rtsp_port, password)
+    except FileNotFoundError:
+        log.error(f"File {file_path} does not exist, please check the path!")
+    except json.JSONDecodeError:
+        log.error(f"{file_path} is not a valid JSON format, please check the file content!")
+    except Exception as e:
+        log.error(f"An unknown error occurred while processing the file: {str(e)}")
+
 def main():
     print(LOGO)
     parser = argparse.ArgumentParser(description='Blood Cat - RTSP Camera Weak Credential Scanner')
@@ -86,8 +114,11 @@ def main():
     parser.add_argument('--ips', default='', type=str, help='Targets list file (each line: IP or IP:PORT)')
     parser.add_argument('--password', default='', type=str, help='Password Spraying')
     parser.add_argument('--merge', action='store_true', help='Merge and update all data in ./data into a single BC file')
+    parser.add_argument('--hiv', default='', help='Load Hikvision credentials file')
     args = parser.parse_args()
-    cam = CamLib()
+    if args.hiv:
+        read_and_exe_hik_credentials(args.hiv)
+        sys.exit(0)
     if args.merge:
         cam.merge_all_bc()
     else:
