@@ -281,7 +281,7 @@ TEAM B:
 
 # Blood-Cat-Map LAN Usage
 
-This is a private network camera viewer
+This is a internal network camera viewer
 
 Test file:
 `https://github.com/MartinxMax/BloodCat/releases/download/play/BloodCat_Map_LAN_Test.zip`
@@ -318,6 +318,7 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-2.png)
 
 ---
+
 
 
 
