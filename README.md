@@ -6,6 +6,8 @@ A tool for hacking into publicly exposed network cameras, with support for speci
 
 ![alt text](./pic/main.png)
 
+PS: This tool supports weak‑credential and brute‑force testing against most mainstream network camera models. However, some devices with enhanced security mechanisms deliberately obfuscate or conceal their fingerprinting characteristics, which means the tool is not universally effective. Future updates will progressively introduce additional camera‑related CVE‑based vulnerability detection plugins, aiming to improve success rates while reducing unnecessary probing traffic.
+
 **About BloodCat**
 
 1. Integrates with search engines, enabling target filtering and continuous threat operations by **country, region, or city**.
@@ -318,6 +320,7 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-2.png)
 
 ---
+
 
 
 
