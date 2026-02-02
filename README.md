@@ -147,6 +147,13 @@ If you are using the Windows operating system, please download `https://github.c
 
 # BloodCat Usage
 
+
+**After BloodCat successfully gains access to a camera, it will provide you with a playback link.
+However, you don’t need to open the link manually.**
+
+**Simply reload the module in BloodCat-Map, then use the IP search in the top-right corner to locate the target.
+Click the target, and the video will play directly.**
+
 ```bash
 (bloodcat)$ python3 bloodcat.py -h
 ```
@@ -351,6 +358,7 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-2.png)
 
 ---
+
 
 
 
