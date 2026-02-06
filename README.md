@@ -8,7 +8,9 @@ A tool for hacking into publicly exposed network cameras, with support for speci
 
 PS: This tool supports weak‑credential and brute‑force testing against most mainstream network camera models. However, some devices with enhanced security mechanisms deliberately obfuscate or conceal their fingerprinting characteristics, which means the tool is not universally effective. Future updates will progressively introduce additional camera‑related CVE‑based vulnerability detection plugins, aiming to improve success rates while reducing unnecessary probing traffic.
 
-**About BloodCat**
+---
+
+**About BloodCat** *[update:2026-01-09]* 🔴 *HASH:aa98a26cde808cb168f9fa9ea4e977a8*
 
 1. Integrates with search engines, enabling target filtering and continuous scanning operations by country, region, or city.
 2. Operates at the **RTP protocol**, providing high stealth and efficiency.
@@ -17,12 +19,18 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 5. Supports **bc data updating and merging**, facilitating long-term maintenance and management.
 6. Supports writing **Hikvision camera credential header information** into **bc files**, which can be **visualized on a map**.
 
+
 **Scanner I recommend: [https://github.com/MartinxMax/n1ght0wl.git](https://github.com/MartinxMax/n1ght0wl.git)**
 
-**About CVE-2017-7921_HIK_Auto_Crack**
+---
+
+**About CVE-2017-7921_HIK_Auto_Crack** *[update:2026-01-11]* 🔴 *HASH:2c04fd7ded4342db4aa4f28c0552579e*
+
 Exploits the Hikvision CVE vulnerability, automatically generating **CSV files** for import into **iVMS-4200** for viewing, or **JSON files** for import into **BloodCat**.
 
-**About BloodCat-Map**
+---
+
+**About BloodCat-Map** *[update:2026-01-05]* 🔴 *HASH:b274afa2a725967beef09fbea52c6445*
 
 1. Compromised devices can be **visualized on a map**, with direct access to **camera feeds**.
 2. Supports **team collaboration** and **data sharing**, etc.
@@ -30,18 +38,43 @@ Exploits the Hikvision CVE vulnerability, automatically generating **CSV files**
 4. Provides **fuzzy search and location-based querying**.
 
 
- 
-**About BloodCat-Map-LAN**
+---
+
+**About BloodCat Hikvision map** *[update:2026-02-06]* 🔴 *HASH:d4ee04c6bf55a4a5b831d784f7797c94*
+After importing a Hikvision CSV file, targets can be filtered by country or keywords, exported selectively, and visualized on a world map with their geographic locations.
+
+
+---
+
+**About BloodCat-Map-LAN** *[update:2026-01-10]* 🔴 *HASH:d5fcd1150613f464116c011c0692e6e0*
 
 1. When attacking **internal network cameras**, this program can be launched to view **compromised cameras**.
 2. Supports **automatic layout arrangement** for camera feed viewing.
 
-**BloodCat for Nmap**
+---
 
+**BloodCat for Nmap** *[update:2026-01-15]* 🔴 *HASH:561f2a3b376e3fb46b8e5eb8149634b5*
 
 1. You don’t need to install most of BloodCat’s core dependencies to perform the detection.
 2. This Nmap version only supports detecting anonymous public cameras and cannot brute‑force camera account passwords.
 
+---
+
+# Video
+
+
+<a href="https://www.youtube.com/watch?v=q4WR4QpiIwI">
+  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dq4WR4QpiIwI" width="32%">
+</a>
+<a href="https://www.youtube.com/watch?v=BaA30uFkXbc">
+  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBaA30uFkXbc" width="32%">
+</a>
+<a href="https://www.youtube.com/watch?v=_HDXlHj8HlQ">
+  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D_HDXlHj8HlQ" width="32%">
+</a>
+ 
+
+---
 
 ```
                                                ..,.oooE777999V(;
@@ -80,26 +113,6 @@ Exploits the Hikvision CVE vulnerability, automatically generating **CSV files**
                                         `L,:    _uuua''
                                           `LaE''
 ```
-
-
-
-
-
----
-
-# Video
-
-
-<a href="https://www.youtube.com/watch?v=q4WR4QpiIwI">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dq4WR4QpiIwI" width="32%">
-</a>
-<a href="https://www.youtube.com/watch?v=BaA30uFkXbc">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBaA30uFkXbc" width="32%">
-</a>
-<a href="https://www.youtube.com/watch?v=_HDXlHj8HlQ">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D_HDXlHj8HlQ" width="32%">
-</a>
- 
 
 ---
 
@@ -255,6 +268,41 @@ Download link : https://github.com/MartinxMax/BloodCat/releases/tag/play
 ![alt text](./pic/hik3.png)
 
 ![alt text](./pic/hik4.png)
+
+---
+
+# Bloodcat Hikvision Editor && Camera Map Visualization Export
+
+After importing a CSV configuration file, you can:
+1.Filter targets by specific country/region
+2.Perform fuzzy matching on fields (e.g. country, keyword, etc.)
+3.Re-export only the matched/selected targets
+4.Visualize all target cameras directly on a world map using geolocation data
+
+```bash
+(bloodcat)$ python3 bloodcat_hikvision_editor.py
+```
+
+![alt text](./pic/hik-image.png)
+
+Click Import CSV configuration file.
+
+![alt text](./pic/hik-image-1.png)
+
+View the geographic locations of all Hikvision cameras on the map.
+
+![alt text](./pic/hik-image-2.png)
+
+For example, searching “Japan” in the country field will display all related entries.
+All matched items can be auto-selected, then export only the checked targets.
+
+![alt text](./pic/hik-image-3.png)
+
+Finally, use iVMS-4200 to play the exported devices.
+
+Download link : https://github.com/MartinxMax/BloodCat/releases/tag/play
+
+![alt text](./pic/hik-image-4.png)
 
 ---
 
