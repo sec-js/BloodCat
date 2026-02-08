@@ -2,7 +2,8 @@
 
 # Blood-Cat
 
-![alt text](./pic/main.png)
+ 
+<img src="./pic/main2.png" width="100%">
 
 A tool for hacking into publicly exposed network cameras, with support for specifying country and region.
 
@@ -450,5 +451,6 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-2.png)
 
 ---
+
 
  
