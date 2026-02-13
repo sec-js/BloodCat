@@ -209,6 +209,20 @@ Replace the original global.bc file, then right-click Reload in BloodCat_Map:
  
 ---
 
+
+## Filter cameras in the BC file that are alive today
+
+
+```bash
+(bloodcat)$ python3 bloodcat.py --live ./data/global.bc
+```
+
+![alt text](./pic/live.png)
+
+>live_20260213_234933.bc
+
+---
+
 # Bloodcat CVE
 
 ```bash
@@ -500,6 +514,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
