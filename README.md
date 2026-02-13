@@ -123,7 +123,7 @@ If you are using the Windows operating system, please download `https://github.c
 
 **About:**
 1. Integrates with search engines, enabling target filtering and continuous scanning operations by country, region, or city.
-2. Operates at the **RTP protocol**, providing high stealth and efficiency.
+2. Operates at the **RTSP protocol**, providing high stealth and efficiency.
 3. Performs **camera fingerprint identification** first, automatically filtering out and excluding **honeypot systems**, then enumerates **usernames and passwords** of target network cameras.
 4. Supports **password spraying**, applicable to **single IPs or multiple IP ranges**. 
 5. Supports **bc data updating and merging**, facilitating long-term maintenance and management.
@@ -522,6 +522,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
