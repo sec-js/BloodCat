@@ -53,12 +53,13 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 
 - [Video](#official-video)
 - [Install](#bloodcat-installation)
-- [How use Bloodcat](#bloodcat)
-- [How use Bloodcat CVE](#bloodcat-cve)
-- [How use Bloodcat Global Map](#bloodcat-map)
-- [How use Bloodcat Lan Map](#bloodcat-lan-map)
-- [How use Bloodcat Editor](#bloodcat-editor)
-- [How use Bloodcat Nmap (Run immediately)](#bloodcat-nmap)
+- [Bloodcat](#bloodcat)
+- [Evil bat](#evil-bat)
+- [Bloodcat CVE](#bloodcat-cve)
+- [Bloodcat Global Map](#bloodcat-map)
+- [Bloodcat Lan Map](#bloodcat-lan-map)
+- [Bloodcat Editor](#bloodcat-editor)
+- [Bloodcat Nmap (Run immediately)](#bloodcat-nmap)
 
 ---
 
@@ -356,6 +357,21 @@ drwxr-xr-x    6 1000     root            65 Jan 18  2022 usr
 drwxrwxrwt    6 root     root  	         120 Jan  1  1970 var
 ```
 
+
+---
+
+# Evil bat
+
+https://github.com/MartinxMax/evil-b4t
+
+Evil‑Bat is a real‑time human detection and activity logging tool based on remote network cameras.
+
+It analyzes RTSP video streams to identify the presence of living humans and automatically records key moments when people appear in the camera view.
+
+![alt text](./pic/ev-3.png)
+
+
+
 ---
 
 
@@ -523,6 +539,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
