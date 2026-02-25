@@ -55,7 +55,8 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 - [Install](#bloodcat-installation)
 - [Bloodcat](#bloodcat)
 - [Evil bat](#evil-bat)
-- [Shodan cat](#shodan-cat) 
+- [Shodan cat](#shodan-cat)
+- [PicThief](#picthief)
 - [Bloodcat CVE](#bloodcat-cve)
 - [Bloodcat Global Map](#bloodcat-map)
 - [Bloodcat Lan Map](#bloodcat-lan-map)
@@ -386,6 +387,21 @@ https://github.com/MartinxMax/shodancat
 
 ---
 
+# PicThief
+
+This is a tool built on Flask API, OCR (optical character recognition), and YOLO-based intelligent detection, designed to identify images that may contain potentially leaked identity credentials.
+
+The client enables sorting and organizing of images containing sensitive identity credentials without the need for any dependency installation.
+
+The server exposes an open identification API interface to intelligently detect potential identity credentials.
+
+https://github.com/MartinxMax/PicThief
+
+![alt text](./pic/pc-1.png)
+
+
+---
+
 
 # Bloodcat Map
 
@@ -551,6 +567,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
