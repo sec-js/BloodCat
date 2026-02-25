@@ -55,6 +55,7 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 - [Install](#bloodcat-installation)
 - [Bloodcat](#bloodcat)
 - [Evil bat](#evil-bat)
+- [Shodan cat](#shodan-cat) 
 - [Bloodcat CVE](#bloodcat-cve)
 - [Bloodcat Global Map](#bloodcat-map)
 - [Bloodcat Lan Map](#bloodcat-lan-map)
@@ -374,6 +375,17 @@ It analyzes RTSP video streams to identify the presence of living humans and aut
 
 ---
 
+# Shodan cat
+
+If you don’t have a Shodan membership, this tool helps you maximize the number of IP addresses you can retrieve from Shodan.
+
+https://github.com/MartinxMax/shodancat
+
+
+![alt text](./pic/sd-1.png)
+
+---
+
 
 # Bloodcat Map
 
@@ -539,6 +551,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
