@@ -13,6 +13,7 @@ import re
 import subprocess
 from lib.camlib import *
 from lib.log_cat import *
+ 
 import threading
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from PyQt5.QtGui import QCursor
@@ -30,6 +31,7 @@ from PyQt5.QtWebChannel import QWebChannel
 from lib.version import VERSION
 log = LogCat()
 cam = CamLib()
+ 
 CONFIG_PATH = os.path.join('.', 'data', 'bloodcatmap.conf')
 SLOT_COUNT = 10  
 API_SER = 34713
@@ -434,6 +436,8 @@ def start_http_server():
     log.info(f"BloodCat-Map API local data download link: http://{local_ip}:{API_SER}/global.bc")
     httpd.serve_forever()
 
+ 
+
 class Bridge(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -457,19 +461,18 @@ class Bridge(QObject):
 
     @pyqtSlot(str)
     def playRTSP(self, url):
-        ffplay_bin = r'.\lib\ffplay.exe' if sys.platform.startswith('win') else 'ffplay'
         match = re.search(r'@([\d\.]+):', url)
         ip = match.group(1) if match else 'N/A'
-        try:
-            subprocess.Popen(
-                [ffplay_bin, '-rtsp_transport', 'tcp', '-x', '420', '-y', '340', url, '-window_title', ip],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, shell=False
-            )
-            print(f"[+] Playing...")
-        except FileNotFoundError:
-            print("\033[31m[!] ffplay not found, please install ffmpeg \033[0m")
-        except Exception as e:
-            print("\033[31m[!] Playback error:", e, "\033[0m")
+
+        log.info(f"Now playing... [{ip}]")
+
+        subprocess.Popen([
+            sys.executable,
+            "./lib/play.py",
+            url,
+            ip,
+            'origin'
+        ])
 
     @pyqtSlot(str, result=str)
     def addRemoteUrl(self, url):

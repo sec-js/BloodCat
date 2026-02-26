@@ -1,27 +1,5 @@
-
-# INFO
-
-⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘
-
-🐈‍⬛ Have you ever wondered whether there are publicly accessible cameras watching the streets you walk every day?
-Once you become aware of their existence, you may realize how close and real online exposure actually is.
-
-🤦‍♂️ Are you still struggling with the lack of practical tools for exploiting IP camera vulnerabilities?
-
-🌏 BloodCat officially provides over 300+ publicly accessible IP camera examples worldwide.
-
-🎥 A comprehensive IP Camera penetration testing toolkit, featuring default credential enumeration, CVE exploitation, and additional capabilities — with support for collaborative team usage.
-
-🛡️ BloodCat does not collect any identity-related information.
-To ensure user anonymity and security, automatic updates are intentionally disabled to reduce the risk of supply-chain compromise.
-
-💻 BloodCat is compatible with Windows, Linux, and macOS.
-On Android, GUI-related components may not function properly; however, the core functionality remains operational.
-
-⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘⫘
-
+ 
 # Blood-Cat
-
  
 <img src="./pic/main2.png" width="100%">
 
@@ -29,24 +7,58 @@ A tool for hacking into publicly exposed network cameras, with support for speci
 
 PS: This tool supports weak‑credential and brute‑force testing against most mainstream network camera models. However, some devices with enhanced security mechanisms deliberately obfuscate or conceal their fingerprinting characteristics, which means the tool is not universally effective. Future updates will progressively introduce additional camera‑related CVE‑based vulnerability detection plugins, aiming to improve success rates while reducing unnecessary probing traffic.
 
+
+🐈‍⬛ Have you ever wondered whether there are publicly accessible cameras watching the streets you walk every day?
+Once you become aware of their existence, you may realize how close and real online exposure actually is.
+
+🤦‍♂️ Are you still struggling with the lack of practical tools for exploiting IP camera vulnerabilities?
+
+🌏 BloodCat officially provides over 🔥1500+🔥 publicly accessible IP camera examples worldwide.
+
+🎥 A comprehensive IP Camera penetration testing toolkit, featuring default credential enumeration, CVE exploitation, and additional capabilities — with support for collaborative team usage.
+
+🛡️ BloodCat does not collect any identity-related information.
+To ensure user anonymity and security, automatic updates are intentionally disabled to reduce the risk of supply-chain compromise.
+
+💻 BloodCat is compatible with Windows, Linux, and macOS.
+
 ---
 
 
  
 
  
- 
-<img src="./pic/m1.gif" width="100%">
- 
-<img src="./pic/m2.gif" width="100%">
- 
+<table>
+  <tr>
+    <td><img src="./pic/m1.gif" width="100%"></td>
+    <td><img src="./pic/m2.gif" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src="./pic/m3.gif" width="100%"></td>
+    <td><img src="./pic/m4.gif" width="100%"></td>
+  </tr>
+</table>
 
-<img src="./pic/m3.gif" width="100%">
+<table>
+<tr>
+  <td><img src="./pic/nmap1.png" width="100%"></td>
+  <td><img src="./pic/hik-image-2.png" width="100%"></td>
+</tr>
+<tr>
+  <td><img src="./pic/t1.png" width="100%"></td>
+  <td><img src="./pic/ev-3.png" width="100%"></td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+  <td><img src="./pic/front.png" width="100%"></td>
+  <td><img src="./pic/back.png" width="100%"></td>
+</tr>
  
-<img src="./pic/m4.gif" width="100%">
- 
-<img src="./pic/H4CK13.png" width="100%">
- 
+</table>
+
 ---
 
 # Bloodcat Index
@@ -59,6 +71,7 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 - [PicThief](#picthief)
 - [Bloodcat CVE](#bloodcat-cve)
 - [Bloodcat Global Map](#bloodcat-map)
+- [Bloodcat Global Map Terminal](#bloodcat-map-terminal)
 - [Bloodcat Lan Map](#bloodcat-lan-map)
 - [Bloodcat Editor](#bloodcat-editor)
 - [Bloodcat Nmap (Run immediately)](#bloodcat-nmap)
@@ -107,20 +120,20 @@ PS: This tool supports weak‑credential and brute‑force testing against most 
 
 # Bloodcat Installation
 
+ 
+
 Disk space requirement: `Available space > 600 MB`
 
 ```bash
-$ sudo apt update && sudo apt install ffmpeg python3-pyqt5.qtwebengine -y
+$ sudo apt update && sudo apt install python3-pyqt5.qtwebengine -y
 $ git clone https://github.com/MartinxMax/BloodCat.git
 $ cd BloodCat && python3 -m venv bloodcat
 $ source ./bloodcat/bin/activate
 (bloodcat)$ python -m pip install --upgrade pip
-(bloodcat)$ pip install opencv-python aiohappyeyeballs aiohttp aiosignal async-timeout attrs certifi charset-normalizer frozenlist geoip2 idna maxminddb multidict propcache pycryptodome PyQt5 PyQt5-Qt5 PyQt5_sip PyQtWebEngine PyQtWebEngine-Qt5 requests typing_extensions urllib3 yarl
+(bloodcat)$ pip install opencv-python aiohappyeyeballs aiohttp aiosignal async-timeout attrs certifi charset-normalizer frozenlist geoip2 idna maxminddb multidict propcache pycryptodome PyQt5 PyQt5-Qt5 PyQt5_sip PyQtWebEngine PyQtWebEngine-Qt5 requests typing_extensions urllib3 yarl numpy 
 ``` 
 
-If you are using the Windows operating system, please download `https://github.com/MartinxMax/BloodCat/releases/download/play/ffplay.exe` and move the downloaded .exe file into the `./lib/` directory.
-
-
+ 
 ---
 
 # Bloodcat
@@ -465,7 +478,60 @@ TEAM B:
  
 ---
 
+# Bloodcat Map Terminal
 
+
+```bash
+(bloodcat)$ python ./bloodcat_map_terminal.py
+```
+
+![alt text](t1.png)
+
+
+Here’s a useful trick: if you’re using Termux, after setting up the BloodCat environment on one host machine, you can use the socat command to forward the surveillance stream to another host that doesn’t have BloodCat installed.
+ 
+```bash
+(bloodcat)$ sudo apt install socat
+(bloodcat)$ socat TCP-LISTEN:9999,fork,reuseaddr EXEC:"python ./bloodcat_map_terminal.py"
+```
+
+
+![alt text](t2.png)
+
+
+```bash
+(Termux)$ pkg install netcat-openbsd -y
+(Termux)$ nc 192.168.67.131 9999
+```
+![alt text](t3.png)
+
+```BASH
+BloodCatMap-Terminal# help
+
+=== BloodCat Map Terminal - Help Manual ===
+Commands:
+  help                - Show this help message
+  show                - Show all entries with detailed fields (global ID)
+  show brief          - Show brief list (global ID, IP, Source)
+  search <keyword>    - Search entries (supports: IP, RTSP, ASN, sys_org, network)
+  play <global_id>    - Play RTSP stream by GLOBAL ID
+  info <global_id>    - Show detailed information by GLOBAL ID
+  reload              - Reload all data (local + remote)
+  reset               - Reset filter to show all entries
+  add <url>           - Add remote DB URL to config
+  remove <url>        - Remove remote DB URL from config
+  urls                - List all configured remote URLs
+  exit/quit           - Exit the console
+```
+
+```BASH
+BloodCatMap-Terminal# search x.x.x.x
+BloodCatMap-Terminal# play 1226
+```
+
+![alt text](t4.png)
+
+---
 # BloodCat Nmap
 
 PS: This Nmap version only supports detecting anonymous public cameras and cannot brute‑force camera account passwords.

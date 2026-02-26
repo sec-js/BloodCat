@@ -32,7 +32,7 @@ class CamLib():
     def __init__(self):
         self.KEY = b'S-H4CK13@M4ptnh!' 
         self.IV = b'14' + b'\x00' * 14   
-        self.SEP = b'\uE000' 
+        self.SEP = b'\\uE000' 
         self.LOCAL_DB = './data/global.bc'
         self.LOCAL_LAN_DB = './data/lan.lc'
         self.DB = 'https://raw.githubusercontent.com/MartinxMax/db/refs/heads/main/blood_cat/global.bc'
