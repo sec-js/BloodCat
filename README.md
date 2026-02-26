@@ -88,29 +88,36 @@ To ensure user anonymity and security, automatic updates are intentionally disab
 
 ---
 
-
-<a href="https://www.youtube.com/watch?v=GuDtAhKAi5M">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DGuDtAhKAi5M" width="32%">
-</a>
-
-<a href="https://www.youtube.com/watch?v=q4WR4QpiIwI">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dq4WR4QpiIwI" width="32%">
-</a>
-<a href="https://www.youtube.com/watch?v=BaA30uFkXbc">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBaA30uFkXbc" width="32%">
-</a>
-<a href="https://www.youtube.com/watch?v=_HDXlHj8HlQ">
-  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D_HDXlHj8HlQ" width="32%">
+<a href="https://www.youtube.com/watch?v=pxIHwdLPREo">
+  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DpxIHwdLPREo" width="100%">
 </a>
  
+---
+
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+  <a href="https://www.youtube.com/watch?v=GuDtAhKAi5M">
+    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DGuDtAhKAi5M" width="48%">
+  </a>
+  <a href="https://www.youtube.com/watch?v=q4WR4QpiIwI">
+    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3Dq4WR4QpiIwI" width="48%">
+  </a>
+  <a href="https://www.youtube.com/watch?v=BaA30uFkXbc">
+    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBaA30uFkXbc" width="48%">
+  </a>
+  <a href="https://www.youtube.com/watch?v=_HDXlHj8HlQ">
+    <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D_HDXlHj8HlQ" width="48%">
+  </a>
+</div>
+
 ---
 
 # Other Video
 
 <div align="center">
-  <h2>@Root Academy</h2>
+  <h2>FaceBook@Root Academy</h2>
 <a href="https://www.facebook.com/reel/1675427523211120">
-  <img src="https://scontent.xx.fbcdn.net/v/t15.5256-10/610815504_1211463333667661_5197582656440288673_n.jpg?stp=dst-jpg_p960x960_tt6&_nc_cat=108&ccb=1-7&_nc_sid=5fad0e&_nc_ohc=wVpSYtl-_hwQ7kNvwFZWrSu&_nc_oc=Adn4xrkXFvYCD9HRaYH7wndl-fejeHiC3Rz0_WeBIjb3T8UaBAZxG4I_rkXwqOpex9w&_nc_zt=23&_nc_ht=scontent.xx&_nc_gid=69doGrNW1ePhQieHvKuU7Q&oh=00_Aft50j9te0KL3T0xZg4B1OrjAhEPfcFPXHfvoLKQni7dZQ&oe=69911C71" width="100%">
+  <img src="https://scontent-dfw5-2.xx.fbcdn.net/v/t15.5256-10/610147039_1643462560353247_8069844767782701194_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=a27664&_nc_ohc=su9eINcE1lIQ7kNvwEfMo2E&_nc_oc=AdlDkGA5zh5h0ZsCwW9LtAHoPOGVcyrAkYMm8bWuYIAppeBUQnIFzo4R9uh6g6ww-sw&_nc_zt=23&_nc_ht=scontent-dfw5-2.xx&_nc_gid=o_AKkZwON6WFECmVbMabHQ&oh=00_Afu8Or7QBWAbcrbRpB_2bi3BiKrZnEANg0tzSwjXeRzxaw&oe=69A63A43" width="100%">
 </a>
 </div>
 
@@ -633,6 +640,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
