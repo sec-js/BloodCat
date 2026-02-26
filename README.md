@@ -492,7 +492,7 @@ TEAM B:
 (bloodcat)$ python ./bloodcat_map_terminal.py
 ```
 
-![alt text](t1.png)
+![alt text](./pic/t1.png)
 
 
 Here’s a useful trick: if you’re using Termux, after setting up the BloodCat environment on one host machine, you can use the socat command to forward the surveillance stream to another host that doesn’t have BloodCat installed.
@@ -503,14 +503,14 @@ Here’s a useful trick: if you’re using Termux, after setting up the BloodCat
 ```
 
 
-![alt text](t2.png)
+![alt text](./pic/t2.png)
 
 
 ```bash
 (Termux)$ pkg install netcat-openbsd -y
 (Termux)$ nc 192.168.67.131 9999
 ```
-![alt text](t3.png)
+![alt text](./pic/t3.png)
 
 ```BASH
 BloodCatMap-Terminal# help
@@ -536,7 +536,7 @@ BloodCatMap-Terminal# search x.x.x.x
 BloodCatMap-Terminal# play 1226
 ```
 
-![alt text](t4.png)
+![alt text](./pic/t4.png)
 
 ---
 # BloodCat Nmap
@@ -640,6 +640,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
