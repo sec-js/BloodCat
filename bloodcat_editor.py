@@ -223,9 +223,7 @@ class BCDataLoader:
         self.filtered_data: List[Dict] = []
 
     def import_bc_file(self, path_file: str) -> bool:
-        if not CAMLIB_AVAILABLE:
-            QMessageBox.critical(None, "Error", "CamLib is not available")
-            return False
+ 
         try:
             bc_data = self.cam.get_LocalDB_data(path_file)
             if not isinstance(bc_data, list):
@@ -945,7 +943,7 @@ class UnifiedEditor(QMainWindow):
         self.hik_geo_cache[clean_ip] = {}
         return {}
 
-if __name__ == "__main__":
+def main():
     print(LOGO)
     app = QApplication(sys.argv)
     app.setStyle("Fusion")
@@ -954,3 +952,7 @@ if __name__ == "__main__":
     editor = UnifiedEditor()
     editor.showMaximized()
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    main()
