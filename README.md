@@ -539,6 +539,7 @@ BloodCatMap-Terminal# play 1226
 ![alt text](./pic/t4.png)
 
 ---
+
 # BloodCat Nmap
 
 PS: This Nmap version only supports detecting anonymous public cameras and cannot brute‑force camera account passwords.
@@ -546,13 +547,15 @@ The good news is that you don’t need to install most of BloodCat’s core depe
 
 `$ sudo apt install nmap ffmpeg -y`
 
-`$ wget https://raw.githubusercontent.com/MartinxMax/BloodCat/refs/heads/main/bloodcat.nse -O bloodcat.nse`
-
-`$ nmap --script ./bloodcat.nse -Pn -p 554 X.X.X.X`
+```BASH
+ip=<Target_X.X.X.X>; nmap -Pn -p "$(curl -s https://raw.githubusercontent.com/MartinxMax/BloodCat/refs/heads/main/TOP1000_Camera_Port.txt | grep -oE '[0-9]+' | sort -n | uniq | paste -sd,)" --script <(curl -s https://raw.githubusercontent.com/MartinxMax/BloodCat/refs/heads/main/bloodcat.nse) $ip
+```
 
 ![alt text](./pic/nmap2.png)
- 
-`$ nmap --script ./bloodcat.nse -Pn -p 554 -iL targets.txt`
+
+```BASH
+ips=<File_Name>; nmap -Pn -p "$(curl -s https://raw.githubusercontent.com/MartinxMax/BloodCat/refs/heads/main/TOP1000_Camera_Port.txt | grep -oE '[0-9]+' | sort -n | uniq | paste -sd,)" --script <(curl -s https://raw.githubusercontent.com/MartinxMax/BloodCat/refs/heads/main/bloodcat.nse) -iL $ips
+```
 
 ![alt text](./pic/nmap1.png)
 
@@ -640,6 +643,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
