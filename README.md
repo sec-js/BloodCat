@@ -94,6 +94,11 @@ To ensure user anonymity and security, automatic updates are intentionally disab
  
 ---
 
+<a href="https://www.youtube.com/watch?v=5_WxQEc_P_8">
+  <img src="https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D5_WxQEc_P_8" width="100%">
+</a>
+ 
+---
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
   <a href="https://www.youtube.com/watch?v=GuDtAhKAi5M">
@@ -643,6 +648,7 @@ $ python3 bloodcat_map_lan.py
 
 
  
+
 
 
 
