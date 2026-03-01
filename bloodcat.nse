@@ -67,7 +67,7 @@ prerule = function()
  / /_/ / / /_/ / /_/ / /_/ /_____/ /___/ /_/ / /_     / /|  / / / / / / /_/ / /_/ /
 /_____/_/\____/\____/\__,_/      \____/\__,_/\__/____/_/ |_/_/ /_/ /_/\__,_/ .___/ 
                                                /_____/                    /_/      
-Maptnh@S-H4CK13              Cameras Scan script for Nmap        https://github.com/MartinxMax  
+Maptnh@S-H4CK13              Cameras Scan script for Nmap   v1.2    https://github.com/MartinxMax  
 ============================================================================================================
 ]])   
   return false
@@ -121,7 +121,7 @@ local function is_rtsp_service(host, port)
     return false
   end
 
-  if resp and resp:lower():find("rtsp") then
+  if resp and resp:match("^RTSP/1%.0") then
     return true
   end
 
