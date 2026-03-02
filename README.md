@@ -1,6 +1,30 @@
- 
+
 # Blood-Cat
- 
+
+<div align="center">
+
+<a href="https://twitter.com/intent/tweet?text=BloodCat%20—%20Offensive%20IP%20Camera%20Framework&url=https://github.com/MartinxMax/BloodCat">
+  <img src="https://img.shields.io/badge/X-Share-000000?style=for-the-badge&logo=x&logoColor=white" />
+</a>
+
+<a href="https://www.reddit.com/submit?url=https://github.com/MartinxMax/BloodCat&title=BloodCat%20—%20Offensive%20IP%20Camera%20Framework">
+  <img src="https://img.shields.io/badge/Reddit-Share-FF4500?style=for-the-badge&logo=reddit&logoColor=white" />
+</a>
+
+<a href="https://news.ycombinator.com/submitlink?u=https://github.com/MartinxMax/BloodCat&t=BloodCat%20—%20Offensive%20IP%20Camera%20Framework">
+  <img src="https://img.shields.io/badge/HackerNews-Share-FF6600?style=for-the-badge&logo=ycombinator&logoColor=white" />
+</a>
+
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/MartinxMax/BloodCat">
+  <img src="https://img.shields.io/badge/LinkedIn-Share-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
+
+<a href="https://t.me/share/url?url=https://github.com/MartinxMax/BloodCat&text=BloodCat%20—%20Offensive%20IP%20Camera%20Framework">
+  <img src="https://img.shields.io/badge/Telegram-Share-26A5E4?style=for-the-badge&logo=telegram&logoColor=white" />
+</a>
+
+</div>
+
 <img src="./pic/main2.png" width="100%">
 
 A tool for hacking into publicly exposed network cameras, with support for specifying country and region.
@@ -667,3 +691,4 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-2.png)
 
 ---
+
