@@ -107,14 +107,14 @@ def read_and_exe_hik_credentials(file_path):
 
 def main():
     print(LOGO)
-    parser = argparse.ArgumentParser(description='Blood Cat - RTSP Camera Weak Credential Scanner')
+    parser = argparse.ArgumentParser(description='Blood Cat - IP Camera Weak Credential Scanner')
     parser.add_argument('--country', default='', type=str, help='Country')
     parser.add_argument('--city', default='', type=str, help='City')
     parser.add_argument('--region', default='', type=str, help='Area')
     parser.add_argument('--key',  default='', type=str, help='Fofa API key')
     parser.add_argument('--ip', default='', type=str, help='IP:PORT')
     parser.add_argument('--ips', default='', type=str, help='Targets list file (each line: IP or IP:PORT)')
-    parser.add_argument('--password', default='', type=str, help='Password Spraying')
+    parser.add_argument('--password', default='', type=str, help='Password spraying')
     parser.add_argument('--merge', action='store_true', help='Merge and update all data in ./data into a single BC file')
     parser.add_argument('--hiv', default='', help='Load Hikvision credentials file')
     parser.add_argument('--live', default='', help='Filter currently active cameras in the BC file')

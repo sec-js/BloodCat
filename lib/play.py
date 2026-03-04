@@ -133,8 +133,44 @@ class Player:
                 print("\033[?25h", end="")   
                 print("\033[0m")
 
- 
+    def grab_one_frame(self, rtsp=''):
+        if not rtsp:
+            return False
+        os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = (
+            "rtsp_transport;tcp|"
+            "stimeout;5000000|" 
+            "fflags;nobuffer|"
+            "flags;low_delay"
+        )
 
+        start_time = time.time()
+
+        cap = cv2.VideoCapture(rtsp, cv2.CAP_FFMPEG)
+
+        if not cap.isOpened():
+            return False
+
+        try:
+            frame = None
+
+            while True:
+                if time.time() - start_time > 5:
+                    return False
+                ret, temp = cap.read()
+                if ret:
+                    frame = temp
+                    break
+
+            if frame is None:
+                return False
+
+            ascii_frame = self.frame_to_ascii_color(frame)
+            print(ascii_frame)
+
+        finally:
+            cap.release()
+
+        return True
 
 if __name__ == "__main__":
 

