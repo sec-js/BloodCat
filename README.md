@@ -132,6 +132,7 @@ Once you become aware of their existence, you may realize how close and real onl
 - [Bloodcat Lan Map](#bloodcat-lan-map)
 - [Bloodcat Editor](#bloodcat-editor)
 - [Bloodcat Nmap (Run immediately)](#bloodcat-nmap)
+- [Bloodcat Tricks](#bloodcat-tricks)
 
 
 
@@ -820,6 +821,21 @@ $ python3 bloodcat_map_lan.py
   <a href="#bloodcat-index">⬆ Back to Index</a>
 </p>
 
+
+---
+
+# Bloodcat Tricks
+
+
+
+- [Push Your Live Stream or Private Network Camera Feed to Bloodcat Map for Subscribers to Play](https://github.com/MartinxMax/BloodCat/tree/main/trick/0)
+
+
+
+
+<p align="center">
+  <a href="#bloodcat-index">⬆ Back to Index</a>
+</p>
 
 ---
 
