@@ -246,6 +246,7 @@ class CamLib():
             "/axis-cgi/mjpg/video.cgi",
             "/axis-cgi/media.cgi",
             "/SNC/media/media.amp",
+            "/stream",
             "/stream1",
             "/stream2",
             "/videoMain",
@@ -729,3 +730,4 @@ Network Range: {data['network']}
                 "status": "error",
                 "reason": str(e)
             }
+
